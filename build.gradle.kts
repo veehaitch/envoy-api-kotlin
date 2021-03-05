@@ -135,3 +135,11 @@ protobuf {
 tasks.withType<com.google.protobuf.gradle.GenerateProtoTask> {
     dependsOn("deflateEnvoyControlPlaneZip")
 }
+
+// Dependency locking
+
+dependencyLocking {
+    lockAllConfigurations()
+    lockMode.set(LockMode.STRICT)
+}
+
