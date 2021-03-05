@@ -12,9 +12,10 @@ val projectDescription: String by project
 plugins {
     `java-library`
     kotlin("jvm")
-    id("de.undercouch.download")
-    id("com.google.protobuf")
     id("com.github.ben-manes.versions")
+    id("com.google.protobuf")
+    id("de.undercouch.download")
+    id("org.jlleitschuh.gradle.ktlint")
 }
 
 group = projectGroup
@@ -75,17 +76,17 @@ tasks.clean {
 
 // Dependencies
 
-val kotlinCoroutinesVersion: String by project
-val javaxAnnotationApiVersion: String by project
 val gRPCKotlinStubVersion: String by project
-val protobufVersion: String by project
 val gRPCVersion: String by project
+val javaxAnnotationApiVersion: String by project
+val kotlinCoroutinesVersion: String by project
+val protobufVersion: String by project
 
 dependencies {
     protobuf(files())
     implementation(kotlin("stdlib"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion")
     implementation("javax.annotation:javax.annotation-api:$javaxAnnotationApiVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion")
 
     api("com.google.protobuf:protobuf-java-util:$protobufVersion")
     api("io.grpc:grpc-kotlin-stub:$gRPCKotlinStubVersion")
@@ -142,4 +143,3 @@ dependencyLocking {
     lockAllConfigurations()
     lockMode.set(LockMode.STRICT)
 }
-
