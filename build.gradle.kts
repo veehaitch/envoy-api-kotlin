@@ -16,6 +16,9 @@ plugins {
     id("com.google.protobuf")
     id("de.undercouch.download")
     id("org.jlleitschuh.gradle.ktlint")
+
+    // Publish build artifacts to an Apache Maven repository
+    `maven-publish`
 }
 
 group = projectGroup
@@ -24,6 +27,27 @@ version = envoyControlPlaneVersion
 
 repositories {
     gradlePluginPortal()
+}
+
+// Publish package
+publishing {
+    publications {
+        create<MavenPublication>("default") {
+            from(components["java"])
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/veehaitch/${project.name}")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+
+        }
+    }
 }
 
 // Download, verify, and extract Enovy Java control plane
