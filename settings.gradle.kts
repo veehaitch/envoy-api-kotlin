@@ -16,4 +16,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "envoy-control-plane-kotlin"
+rootProject.name = "envoy-api-kotlin"

@@ -31,10 +31,10 @@ jobs:
           configuration-cache-exact: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Upload envoy-control-plane-kotlin Jar
+      - name: Upload envoy-api-kotlin Jar
         uses: actions/upload-artifact@v2.2.1
         with:
-          name: envoy-control-plane-kotlin
+          name: envoy-api-kotlin
           path: build/libs/
           if-no-files-found: error
       - name: Publish Maven package
