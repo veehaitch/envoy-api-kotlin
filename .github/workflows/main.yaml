@@ -3,6 +3,12 @@ name: CI Build
 on: [push, pull_request]
 
 jobs:
+  validation:
+    name: Validate Gradle Wrapper
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: gradle/wrapper-validation-action@v1.0.3
   build:
     name: Build
     runs-on: ubuntu-latest
