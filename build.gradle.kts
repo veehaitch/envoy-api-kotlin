@@ -169,6 +169,12 @@ tasks.withType<ProcessResources> {
     dependsOn("deflateEnvoyControlPlaneZip")
 }
 
+tasks.whenTaskAdded {
+    if (name == "extractIncludeTestProto") {
+        enabled = false
+    }
+}
+
 // Dependency locking
 
 dependencyLocking {
