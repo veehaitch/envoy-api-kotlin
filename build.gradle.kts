@@ -23,7 +23,11 @@ plugins {
 
 group = projectGroup
 description = projectDescription
-version = envoyControlPlaneVersion
+version = if (System.getenv("GITHUB_REF") == "refs/tags/v$envoyControlPlaneVersion") {
+    envoyControlPlaneVersion
+} else {
+    "$envoyControlPlaneVersion-SNAPSHOT"
+}
 
 repositories {
     gradlePluginPortal()

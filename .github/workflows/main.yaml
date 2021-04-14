@@ -4,6 +4,8 @@ on:
   push:
     branches:
     - main
+    tags:
+    - 'v*'
   pull_request:
     branches:
     - main
@@ -35,8 +37,6 @@ jobs:
           configuration-cache-enabled: true
           configuration-cache-key: gradle.lockfile
           configuration-cache-exact: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload envoy-api-kotlin Jar
         uses: actions/upload-artifact@v2.2.1
         with:
@@ -56,4 +56,4 @@ jobs:
           configuration-cache-exact: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        if: ${{ github.ref == 'refs/heads/main' }}
+        if: ${{ github.event_name == 'push' }}
