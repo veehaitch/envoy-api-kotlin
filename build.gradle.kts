@@ -3,6 +3,7 @@ import com.google.protobuf.gradle.id
 import com.google.protobuf.gradle.plugins
 import com.google.protobuf.gradle.protobuf
 import com.google.protobuf.gradle.protoc
+import com.google.protobuf.gradle.GenerateProtoTask
 
 val envoyControlPlaneVersion: String by project
 val envoyControlPlaneSha256: String by project
@@ -160,7 +161,11 @@ protobuf {
     }
 }
 
-tasks.withType<com.google.protobuf.gradle.GenerateProtoTask> {
+tasks.withType<GenerateProtoTask> {
+    dependsOn("deflateEnvoyControlPlaneZip")
+}
+
+tasks.withType<ProcessResources> {
     dependsOn("deflateEnvoyControlPlaneZip")
 }
 
