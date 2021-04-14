@@ -30,10 +30,10 @@ jobs:
           arguments: assemble
           wrapper-cache-enabled: true
           dependencies-cache-enabled: true
-          dependencies-cache-key: gradle/dependency-locks/**
+          dependencies-cache-key: gradle.lockfile
           dependencies-cache-exact: true
           configuration-cache-enabled: true
-          configuration-cache-key: gradle/dependency-locks/**
+          configuration-cache-key: gradle.lockfile
           configuration-cache-exact: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -49,10 +49,10 @@ jobs:
           arguments: publish
           wrapper-cache-enabled: true
           dependencies-cache-enabled: true
-          dependencies-cache-key: gradle/dependency-locks/**
+          dependencies-cache-key: gradle.lockfile
           dependencies-cache-exact: true
           configuration-cache-enabled: true
-          configuration-cache-key: gradle/dependency-locks/**
+          configuration-cache-key: gradle.lockfile
           configuration-cache-exact: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
