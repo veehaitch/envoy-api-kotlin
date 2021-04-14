@@ -1,3 +1,4 @@
+import com.google.protobuf.gradle.GenerateProtoTask
 import com.google.protobuf.gradle.generateProtoTasks
 import com.google.protobuf.gradle.id
 import com.google.protobuf.gradle.plugins
@@ -160,8 +161,18 @@ protobuf {
     }
 }
 
-tasks.withType<com.google.protobuf.gradle.GenerateProtoTask> {
+tasks.withType<GenerateProtoTask> {
     dependsOn("deflateEnvoyControlPlaneZip")
+}
+
+tasks.withType<ProcessResources> {
+    dependsOn("deflateEnvoyControlPlaneZip")
+}
+
+tasks.whenTaskAdded {
+    if (name == "extractIncludeTestProto") {
+        enabled = false
+    }
 }
 
 // Dependency locking
